@@ -35,7 +35,7 @@ public class AbstractRuntimeServiceTest extends AbstractTest {
     public void test_exec_java() {
         AbstractRuntimeService service = new TestService();
 
-        ProcessBuilder result = service.exec("java", "-version");
+        Process result = service.exec("java", "-version");
         Assertions.assertNotNull(result);
     }
 
@@ -45,7 +45,7 @@ public class AbstractRuntimeServiceTest extends AbstractTest {
 
         Map<String, String> env = new HashMap<>();
         env.put("ARG", "value");
-        ProcessBuilder result = service.exec(env, "junk-boom!");
+        Process result = service.exec(env, "junk-boom!");
         Assertions.assertNull(result);
     }
 }

@@ -12,23 +12,22 @@ public abstract class AbstractRuntimeService {
         return this.execAsync(null, command);
     }
 
-    protected ProcessBuilder exec(String... command) {
+    protected Process exec(String... command) {
         return this.exec(null, command);
     }
 
     protected boolean execAsync(Map<String, String> env, String... command) {
-        ProcessBuilder pb = this.exec(env, command);
-        return pb != null;
+        Process p = this.exec(env, command);
+        return p != null;
     }
 
-    protected ProcessBuilder exec(Map<String, String> env, String... command) {
+    protected Process exec(Map<String, String> env, String... command) {
         try {
             ProcessBuilder pb = this.createBuilder(command);
             if (env != null) {
                 env.forEach((k, v) -> pb.environment().put(k, v));
             }
-            pb.start();
-            return pb;
+            return pb.start();
         } catch (Exception ex) {
             this.getLogger().error("Error running command", ex);
             return null;
