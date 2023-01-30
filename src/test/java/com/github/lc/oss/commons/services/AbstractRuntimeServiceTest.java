@@ -14,11 +14,29 @@ public class AbstractRuntimeServiceTest extends AbstractTest {
     }
 
     @Test
+    public void test_execAsync_java() {
+        AbstractRuntimeService service = new TestService();
+
+        boolean result = service.execAsync("java", "-version");
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void test_execAsync_exception() {
+        AbstractRuntimeService service = new TestService();
+
+        Map<String, String> env = new HashMap<>();
+        env.put("ARG", "value");
+        boolean result = service.execAsync(env, "junk-boom!");
+        Assertions.assertFalse(result);
+    }
+
+    @Test
     public void test_exec_java() {
         AbstractRuntimeService service = new TestService();
 
-        boolean result = service.exec("java", "-version");
-        Assertions.assertTrue(result);
+        ProcessBuilder result = service.exec("java", "-version");
+        Assertions.assertNotNull(result);
     }
 
     @Test
@@ -27,7 +45,7 @@ public class AbstractRuntimeServiceTest extends AbstractTest {
 
         Map<String, String> env = new HashMap<>();
         env.put("ARG", "value");
-        boolean result = service.exec(env, "junk-boom!");
-        Assertions.assertFalse(result);
+        ProcessBuilder result = service.exec(env, "junk-boom!");
+        Assertions.assertNull(result);
     }
 }

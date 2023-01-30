@@ -8,21 +8,30 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractRuntimeService {
     private final Logger logger = LoggerFactory.getLogger(AbstractRuntimeService.class);
 
-    protected boolean exec(String... command) {
+    protected boolean execAsync(String... command) {
+        return this.execAsync(null, command);
+    }
+
+    protected ProcessBuilder exec(String... command) {
         return this.exec(null, command);
     }
 
-    protected boolean exec(Map<String, String> env, String... command) {
+    protected boolean execAsync(Map<String, String> env, String... command) {
+        ProcessBuilder pb = this.exec(env, command);
+        return pb != null;
+    }
+
+    protected ProcessBuilder exec(Map<String, String> env, String... command) {
         try {
             ProcessBuilder pb = this.createBuilder(command);
             if (env != null) {
                 env.forEach((k, v) -> pb.environment().put(k, v));
             }
             pb.start();
-            return true;
+            return pb;
         } catch (Exception ex) {
             this.getLogger().error("Error running command", ex);
-            return false;
+            return null;
         }
     }
 
