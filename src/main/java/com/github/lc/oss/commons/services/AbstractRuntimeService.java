@@ -8,6 +8,10 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractRuntimeService {
     private final Logger logger = LoggerFactory.getLogger(AbstractRuntimeService.class);
 
+    protected boolean exec(String... command) {
+        return this.exec(null, command);
+    }
+
     protected boolean exec(Map<String, String> env, String... command) {
         try {
             ProcessBuilder pb = this.createBuilder(command);

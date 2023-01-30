@@ -17,7 +17,7 @@ public class AbstractRuntimeServiceTest extends AbstractTest {
     public void test_exec_java() {
         AbstractRuntimeService service = new TestService();
 
-        boolean result = service.exec(null, "java", "-version");
+        boolean result = service.exec("java", "-version");
         Assertions.assertTrue(result);
     }
 
