@@ -1,4 +1,4 @@
-package com.github.lc.oss.commons.services;
+package io.github.lc.oss.commons.services;
 
 import java.util.Map;
 

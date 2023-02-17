@@ -1,4 +1,4 @@
-package com.github.lc.oss.commons.services;
+package io.github.lc.oss.commons.services;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.github.lc.oss.commons.testing.AbstractTest;
+import io.github.lc.oss.commons.testing.AbstractTest;
 
 public class AbstractRuntimeServiceTest extends AbstractTest {
     private static class TestService extends AbstractRuntimeService {
