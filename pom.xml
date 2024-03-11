@@ -12,7 +12,7 @@
     <version>1.0.10</version>
     <name>${project.artifactId}</name>
     <description>Some common Java service templates</description>
-    <url>https://github.com/locke-chappel/oss-commons-services</url>
+    <url>https://github.com/locke-chappel/oss-java-commons-services</url>
 
     <licenses>
         <license>
